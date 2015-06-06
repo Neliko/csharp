@@ -20,12 +20,7 @@ namespace z2
             int i = 0;
             String var_string = "";
             long num = 1267165676175383; //число
-            String num_txt = Convert.ToString(num, 2); //двоичное представление
-            int need = kol_bit - num_txt.Length;
-            while (num_txt.Length < 64)
-            {
-                num_txt = "0" + num_txt;
-            }
+            String num_txt = Convert.ToString(num, 2).PadLeft(64,'0'); //двоичное представление
 
             var_string = num_txt.Substring(0, 2);
             id = Convert.ToInt32(var_string, 2);
