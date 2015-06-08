@@ -50,15 +50,16 @@ namespace calc
                         default: Console.WriteLine("Введенного оператора не существует. Повторите попытку\n"); continue;
                     }
                     Console.WriteLine("\nОтвет:{0}", answer);
-                    Console.WriteLine("Выйти? y/n");
-                    if (Console.ReadLine() == "y")
-                        break;
-                  
+                   
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("Ой, произошла ошибка. Введите все данные заново ");
                 }
+                Console.WriteLine("Выйти? y/n");
+                if (Console.ReadLine() == "y")
+                    break;
+                  
                 Console.WriteLine();
             }
 
