@@ -13,8 +13,8 @@ namespace CountWord
         static void Main(string[] args)
         {
             Console.WriteLine("Введите текст:");
-            String str = Console.ReadLine();
-            String[] newStrList = str.Split(' ');
+            string str = Console.ReadLine();
+            string[] newStrList = str.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
             var newStrListDistinct = newStrList.Distinct();
             int count = 0;
 

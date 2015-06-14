@@ -49,8 +49,8 @@ namespace CalculatorString
                 {
                     Console.WriteLine("Введите арифметическое выпажение. Кажый операнд вводится через пробел");
                     Console.WriteLine("Возможные варианы операторов: +,-,/,*,^,%");
-                    String expression = Console.ReadLine();
-                    String[] allData = expression.Split(' ');
+                    string expression = Console.ReadLine();
+                    string[] allData = expression.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); 
                     double a = Convert.ToDouble(allData[0]);
                     char operation = Convert.ToChar(allData[1]);
                     double b = Convert.ToDouble(allData[2]);
