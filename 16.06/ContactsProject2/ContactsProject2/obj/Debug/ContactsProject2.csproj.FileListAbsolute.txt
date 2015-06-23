@@ -1,0 +1,11 @@
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\ContactsProject2\bin\Debug\ContactsProject2.exe.config
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\ContactsProject2\bin\Debug\ContactsProject2.exe
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\ContactsProject2\bin\Debug\ContactsProject2.pdb
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\ContactsProject2\bin\Debug\Data.dll
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\ContactsProject2\bin\Debug\Data.pdb
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\ContactsProject2\obj\Debug\ContactsProject2.csprojResolveAssemblyReference.cache
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\ContactsProject2\obj\Debug\ContactsProject2.exe
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\ContactsProject2\obj\Debug\ContactsProject2.pdb
+C:\Users\repIT\Source\Repos\16.06\ContactsProject2\ContactsProject2\bin\Debug\ContactsProject2.exe.config
+C:\Users\repIT\Source\Repos\16.06\ContactsProject2\ContactsProject2\obj\Debug\ContactsProject2.exe
+C:\Users\repIT\Source\Repos\16.06\ContactsProject2\ContactsProject2\obj\Debug\ContactsProject2.pdb
