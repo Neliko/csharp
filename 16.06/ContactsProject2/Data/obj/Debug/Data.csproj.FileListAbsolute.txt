@@ -1,0 +1,5 @@
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\Data\bin\Debug\Data.dll
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\Data\bin\Debug\Data.pdb
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\Data\obj\Debug\Data.dll
+C:\Users\repIT\Desktop\Sveta\ContactsProject2\Data\obj\Debug\Data.pdb
