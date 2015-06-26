@@ -8,18 +8,17 @@ using System.Xml.Linq;
 
 namespace Data
 {
-    public abstract class Contact:IComparable
+    public class Contact:IComparable, ICloneable
     {
-        public string Name { get; private set; }
-           // ame { get; private set; }
+        public string Name { get; set; }
 
-        public Contact()
+        protected Contact()
         {
-            Name = "";
+            Name = string.Empty;
 
         }
 
-        public Contact(string name)
+        protected Contact(string name)
         {
             Name = name;
         }
@@ -29,17 +28,28 @@ namespace Data
             return string.Format("Name: {0} \n", Name);
         }
 
+        public virtual object Clone()
+        {
+           return new Contact(Name);
+               
+        }
+
         public int CompareTo(object obj)
         {
-        if(  obj.GetType() != this.GetType())
-            throw new Exception("Типы не сравнимы");
-         return 1;
+            if (obj == null) return 1;
+
+            var otherContact = obj as Contact;
+            if (otherContact != null)
+                return (this.Name.CompareTo(otherContact.Name));
+            else
+                throw new ArgumentException("Object is not a Contact");
+
         }
 
 
         public virtual XElement  ToXml()
         {
-           XElement contact = new XElement("Contact",new XAttribute("Name", Name));
+           var contact = new XElement("Contact",new XAttribute("Name", Name));
            return contact;
         }
 

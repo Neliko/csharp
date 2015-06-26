@@ -7,29 +7,30 @@ using System.Xml.Linq;
 
 namespace Data
 {
-    public class Email : Contact, IComparable
+    public class Email : Contact, IComparable, ICloneable
     {
-        private string _alias;
 
+        public string Alias { get; set; }
         public Email()
         {
-            _alias = "";
+            Alias = string.Empty;
         }
 
         public Email(string cname, string al)
             : base(cname)
         {
-            _alias = al;
-        }
-        public string Alias
-        {
-            get { return _alias; }
-            set { _alias = value; }
+            Alias = al;
         }
 
         public override string ToString()
         {
-            return base.ToString() + string.Format("mailto : ({0}) ", _alias);
+            return base.ToString() + string.Format("mailto : ({0}) ", Alias);
+
+        }
+
+        public override object Clone()
+        {
+            return new Email(Name, Alias);
 
         }
 
@@ -37,19 +38,29 @@ namespace Data
         {
             if (obj == null) return 1;
 
-            Email otherEmail = obj as Email;
+            var otherEmail = obj as Email;
             if (otherEmail != null)
-                return this._alias.CompareTo(otherEmail._alias);
+            {
+                //сравниваю по имени
+                if (!this.Name.Equals(otherEmail.Name))
+                    return this.Name.CompareTo(otherEmail.Name);
+                //если равны - возвращаю позицию alias
+                return this.Alias.CompareTo(otherEmail.Alias);
+            }
+
             else
-                throw new ArgumentException("Object is not a Card"); 
-           
+            {
+                throw new ArgumentException("Object is not a Email");
+             
+            }
+
         }
 
         public override XElement ToXml()
         {
-            XElement contact=new XElement("Email");
-            contact.Add(new XAttribute("Name",this.Name));
-            contact.Add(new XAttribute("Alias",this._alias));
+            var contact = new XElement("Email");
+            contact.Add(new XAttribute("Name", this.Name));
+            contact.Add(new XAttribute("Alias", this.Alias));
             return contact;
         }
     }

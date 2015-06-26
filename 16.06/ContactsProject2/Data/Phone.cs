@@ -9,40 +9,49 @@ namespace Data
 {
     public class TelephoneContact : Contact, IComparable
     {
-        private string _telephoneZone;
+        public string TelephoneZone { get; private set; }
 
         public TelephoneContact()
         {
-            _telephoneZone = "";
+            TelephoneZone = string.Empty;
         }
         public TelephoneContact(string cname, string tz)
             : base(cname)
         {
-            _telephoneZone = tz;
+            TelephoneZone = tz;
         }
 
         public override string ToString()
         {
-            return base.ToString() + string.Format("City code : {0}", _telephoneZone);
+            return base.ToString() + string.Format("City code : {0}", TelephoneZone);
         }
 
         public int CompareTo(object obj)
         {
             if (obj == null) return 1;
 
-            TelephoneContact otherPhone = obj as TelephoneContact;
+            var otherPhone = obj as TelephoneContact;
             if (otherPhone != null)
-                return this._telephoneZone.CompareTo(otherPhone._telephoneZone);
+            {
+                if (!this.TelephoneZone.Equals(otherPhone.TelephoneZone))
+                    return this.Name.CompareTo(otherPhone.Name);
+                return this.TelephoneZone.CompareTo(otherPhone.TelephoneZone);
+            }
+
             else
-                throw new ArgumentException("Object is not a Card"); 
-            throw new NotImplementedException();
+                throw new ArgumentException("Object is not a Phone");
+        }
+        public override object Clone()
+        {
+            return new TelephoneContact(Name, TelephoneZone);
+
         }
 
         public  override XElement ToXml()
         {
-            XElement contact = new XElement("TelephoneContact");
+            var contact = new XElement("TelephoneContact");
             contact.Add(new XAttribute("Name", this.Name));
-            contact.Add(new XAttribute("Zone", this._telephoneZone));
+            contact.Add(new XAttribute("Zone", this.TelephoneZone));
             return contact;
         }
     }

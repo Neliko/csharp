@@ -9,11 +9,12 @@ namespace Data
 {
     public class Card : IComparable, ICloneable
     {
+
+
         private List<Contact> _contactsList;
         private string _name;
         private long _synCode;
         private long _projectId;
-
         public Card()
         {
             _name = null;
@@ -27,6 +28,7 @@ namespace Data
             _name = name;
             _synCode = synCode;
             _projectId = id;
+            ContactsList = new List<Contact>();
         }
 
         public long GetProjectId
@@ -42,7 +44,7 @@ namespace Data
 
         public void SetName(string name)
         {
-            if (name == "")
+            if (name == string.Empty)
                 throw new Exception("Название проекта не может быть пустым!");
             _name = name;
         }
@@ -63,7 +65,7 @@ namespace Data
 
         public string GetData()
         {
-            string text = "Название проекта:" + _name
+            var text = "Название проекта:" + _name
                           + "SynCode:" + _synCode
                           + "Идентификатор:" + GetProjectId;
             return text;
@@ -76,12 +78,7 @@ namespace Data
 
         public string Print()
         {
-            var text = "";
-            foreach (var cont in ContactsList)
-            {
-                text += cont.ToString() + "\n";
-            }
-            return text;
+            return ContactsList.Aggregate("", (current, cont) => current + (cont.ToString() + "\n"));
         }
 
         public bool DelContact(String name)
@@ -98,30 +95,39 @@ namespace Data
         {
             if (obj == null) return 1;
 
-            Card otherCard = obj as Card;
+            var otherCard = obj as Card;
             if (otherCard != null)
-                return this._name.CompareTo(otherCard._name);
+            {
+                if (this._projectId != otherCard._projectId)
+                    return this._projectId.CompareTo(otherCard._projectId);
+                if (!this._name.Equals(otherCard._name))
+                    return this._name.CompareTo(otherCard._name);
+                return this._synCode.CompareTo(otherCard._synCode);
+            }
             else
                 throw new ArgumentException("Object is not a Card");
         }
 
         public object Clone()
         {
-            Card newCard = new Card();
-            newCard._name = this._name;
+            var newCard = new Card();
+            newCard._name = (string)this._name.Clone();
             newCard._projectId = this._projectId;
             newCard._synCode = this._synCode;
-            newCard._contactsList = this.ContactsList;
+            foreach (var contact in ContactsList)
+            {
+                newCard.ContactsList.Add((Contact)contact.Clone());
+            }
             return newCard;
         }
 
         public XElement ToXml()
         {
-            XElement card = new XElement("Card", new XAttribute("Id", _projectId), new XAttribute("Name", _name), new XAttribute("SynCode", _synCode));
-            XElement contacts=new XElement("Contacts");
+            var card = new XElement("Card", new XAttribute("Id", _projectId), new XAttribute("Name", _name), new XAttribute("SynCode", _synCode));
+            var contacts = new XElement("Contacts");
             card.Add(contacts);
-            
-            foreach (Contact contact in _contactsList)
+
+            foreach (var contact in _contactsList)
             {
                 contacts.Add(contact.ToXml());
             }
