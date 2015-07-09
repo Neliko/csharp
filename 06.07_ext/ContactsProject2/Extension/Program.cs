@@ -11,7 +11,7 @@ namespace Extension
         static void Main(string[] args)
         {
             int[] arr = new[] {1, 2, 3};
-            Console.WriteLine(ArrayExtensions.Print(arr, '/'));
+            Console.WriteLine(arr.Print('/')) ;
             Console.ReadKey();
         }
     }

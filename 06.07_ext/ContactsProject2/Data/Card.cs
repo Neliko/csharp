@@ -130,17 +130,15 @@ namespace Data
             }
             return card;
         }
-
-        public IEnumerable<string> EmailContacts()
+        //возвращаем контакты
+        public IEnumerable<Email> EmailContacts()
         {
-            var contacts =  ContactsList.OfType<Email>();
-            return contacts.Select(x=> x.Alias);
+            return ContactsList.OfType<Email>().Where(email => email.Alias.EndsWith(".рф"));
         }
-
+        //возвращаем телефоны
         public IEnumerable<string> PhoneContacts()
         {
-            var contacts = ContactsList.OfType<TelephoneContact>();
-            return  contacts.OrderBy(x => x).Select(x => x.TelephoneZone);
+            return  ContactsList.OfType<TelephoneContact>().OrderBy(x => x.TelephoneZone).Select(x => x.TelephoneZone);
         }
 
     }

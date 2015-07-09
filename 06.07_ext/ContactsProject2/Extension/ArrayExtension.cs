@@ -8,7 +8,7 @@ namespace Extension
 {
    public static class ArrayExtensions
     {
-       public static string Print(int[] array, char separator)
+       public static string Print(this int[] array, char separator)
        {
            string newString=string.Empty;
            foreach (var i in array)

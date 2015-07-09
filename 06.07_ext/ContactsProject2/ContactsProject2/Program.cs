@@ -99,14 +99,12 @@ namespace ContactsProject
         {
             //для клонирования
             var card1 = new Card("23", 23423, 1);
-            card1.AddContact(new Email("123", "2342"));
+            card1.AddContact(new Email("123", "2342.рф"));
+            card1.AddContact(new TelephoneContact("123", "2342.рф"));
             var card2 = (Card)card1.Clone();
             card1.ContactsList[0].Name = "2345";
             Console.WriteLine(card1.Print());
             Console.WriteLine(card2.Print());
-
-            card2.ToXml();
-            var txt = card2.ToXml().ToString();
          
             //работа с файлом
             /*const string path = "c:\\temp\\file.txt";
@@ -160,7 +158,7 @@ namespace ContactsProject
                              var emailContacts = cardList[cardNumber].EmailContacts();
                              foreach (var email in emailContacts)
                             {
-                                Console.WriteLine(email);
+                                Console.WriteLine(email.ToString());
                             }
                             break;
                         case 6: cardNumber = GetCardNumber(cardList);
