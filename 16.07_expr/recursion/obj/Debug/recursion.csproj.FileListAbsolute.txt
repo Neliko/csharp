@@ -1,0 +1,6 @@
+F:\git\csharp\16.07_expr\recursion\bin\Debug\recursion.exe.config
+F:\git\csharp\16.07_expr\recursion\obj\Debug\recursion.csprojResolveAssemblyReference.cache
+F:\git\csharp\16.07_expr\recursion\bin\Debug\recursion.exe
+F:\git\csharp\16.07_expr\recursion\bin\Debug\recursion.pdb
+F:\git\csharp\16.07_expr\recursion\obj\Debug\recursion.exe
+F:\git\csharp\16.07_expr\recursion\obj\Debug\recursion.pdb

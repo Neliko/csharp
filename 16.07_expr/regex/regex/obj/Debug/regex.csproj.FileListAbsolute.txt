@@ -1,0 +1,6 @@
+F:\git\csharp\06.07_ext\regex\regex\bin\Debug\regex.exe.config
+F:\git\csharp\06.07_ext\regex\regex\bin\Debug\regex.exe
+F:\git\csharp\06.07_ext\regex\regex\bin\Debug\regex.pdb
+F:\git\csharp\06.07_ext\regex\regex\obj\Debug\regex.csprojResolveAssemblyReference.cache
+F:\git\csharp\06.07_ext\regex\regex\obj\Debug\regex.exe
+F:\git\csharp\06.07_ext\regex\regex\obj\Debug\regex.pdb

@@ -1,0 +1,12 @@
+F:\git\csharp\16.06\ContactsProject2\Extension\bin\Debug\Extension.exe.config
+F:\git\csharp\16.06\ContactsProject2\Extension\bin\Debug\Extension.exe
+F:\git\csharp\16.06\ContactsProject2\Extension\bin\Debug\Extension.pdb
+F:\git\csharp\16.06\ContactsProject2\Extension\obj\Debug\Extension.csprojResolveAssemblyReference.cache
+F:\git\csharp\16.06\ContactsProject2\Extension\obj\Debug\Extension.exe
+F:\git\csharp\16.06\ContactsProject2\Extension\obj\Debug\Extension.pdb
+F:\git\csharp\06.07_ext\ContactsProject2\Extension\bin\Debug\Extension.exe.config
+F:\git\csharp\06.07_ext\ContactsProject2\Extension\obj\Debug\Extension.exe
+F:\git\csharp\06.07_ext\ContactsProject2\Extension\obj\Debug\Extension.pdb
+F:\git\csharp\06.07_ext\ContactsProject2\Extension\bin\Debug\Extension.exe
+F:\git\csharp\06.07_ext\ContactsProject2\Extension\bin\Debug\Extension.pdb
+F:\git\csharp\06.07_ext\ContactsProject2\Extension\obj\Debug\Extension.csprojResolveAssemblyReference.cache
