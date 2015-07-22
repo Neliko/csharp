@@ -9,7 +9,7 @@ namespace Data
 {
     public class XmlRepository<TItem> where TItem : IXmlSerializable, new()
     {
-        public TItem LoadFromXml<TItem2>(XDocument doc) where TItem2 : new()
+        public TItem LoadFromXml (XDocument doc)
         {
             if (doc == null || doc.Root== null)
             {
