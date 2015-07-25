@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Data;
 
 namespace ContactsProject
@@ -97,6 +98,16 @@ namespace ContactsProject
 
         static void Main(string[] args)
         {
+
+            //test generic
+            var cont = new XmlRepository<PhoneStructure>();
+            var data = cont.SaveToXml(new PhoneStructure { Name = "1", TelephoneZone = "1234" });
+            Console.WriteLine(data);
+
+            var cont2 = new XmlRepository<TelephoneContact>();
+            var data2 = cont2.SaveToXml(new TelephoneContact { Name = "2", TelephoneZone = "222" });
+            Console.WriteLine(data2);
+
             //для клонирования
             var card1 = new Card("23", 23423, 1);
             card1.AddContact(new Email("123", "2342.рф"));
@@ -105,7 +116,17 @@ namespace ContactsProject
             card1.ContactsList[0].Name = "2345";
             Console.WriteLine(card1.Print());
             Console.WriteLine(card2.Print());
-         
+
+
+            card1.LoadCardStatusValue("Archieved");
+            var data3 = card1.SaveToXml();
+            var ccard = new XmlRepository<Card>();
+
+            var cardFromXml = (Card)ccard.LoadFromXml<Card>(data3);
+
+            Console.WriteLine("Карточка после LoadFromXml:");
+            Console.WriteLine(cardFromXml.Print());
+
             //работа с файлом
             /*const string path = "c:\\temp\\file.txt";
 
@@ -116,7 +137,7 @@ namespace ContactsProject
             WriteToFile(path, contactList);
             Console.WriteLine(ReadFromFile(path));
             */
-         //   Console.WriteLine(new Email("cont1", "Contact").CompareTo(new TelephoneContact("cont1", "Contact")));
+
             var cardList = new List<Card>();
             long id = 0;
 
@@ -155,8 +176,8 @@ namespace ContactsProject
                             Console.WriteLine(cardList[cardNumber].ToXml());
                             break;
                         case 5: cardNumber = GetCardNumber(cardList);
-                             var emailContacts = cardList[cardNumber].EmailContacts();
-                             foreach (var email in emailContacts)
+                            var emailContacts = cardList[cardNumber].EmailContacts();
+                            foreach (var email in emailContacts)
                             {
                                 Console.WriteLine(email.ToString());
                             }

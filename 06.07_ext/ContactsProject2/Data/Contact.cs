@@ -45,5 +45,6 @@ namespace Data
            var contact = new XElement("Contact",new XAttribute("Name", Name));
            return contact;
         }
+      
     }
 }

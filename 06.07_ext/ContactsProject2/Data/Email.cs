@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace Data
 {
-    public class Email : Contact, IComparable, ICloneable
+    public class Email : Contact, IComparable, ICloneable, IXmlSerializable
     {
         public string Alias { get; set; }
         public Email()
@@ -55,6 +55,19 @@ namespace Data
             contact.Add(new XAttribute("Name", this.Name));
             contact.Add(new XAttribute("Alias", this.Alias));
             return contact;
+        }
+
+        public XDocument SaveToXml()
+        {
+            return new XDocument(this.ToXml());
+        }
+
+        public void LoadFromXml(XDocument doc)
+        {
+            if (doc.Root == null || doc.Root.Name != "Email")
+                    throw new ArgumentException("Данный Xml не является электронным адресом");
+            this.Name = (string)doc.Root.Attribute("Name");
+            this.Alias = (string)doc.Root.Attribute("Alias");
         }
     }
 }
