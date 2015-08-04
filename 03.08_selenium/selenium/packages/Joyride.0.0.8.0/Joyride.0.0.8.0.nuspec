@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Joyride</id>
+    <version>0.0.8.0</version>
+    <title>Joyride</title>
+    <authors>Glory Lo</authors>
+    <owners>Glory Lo</owners>
+    <licenseUrl>https://raw.githubusercontent.com/glorylo/Joyride/master/LICENSE.txt</licenseUrl>
+    <projectUrl>http://glorylo.github.io/Joyride/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/glorylo/Joyride/master/Assets/images/icon_joyride.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A cross platform mobile framework for automating acceptance tests</description>
+    <releaseNotes>0.0.8
+- added retries launching the app 
+
+0.0.7
+- minor change to IGesture</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>joyride mobile bdd behaviour driven development pageobjects appium selenium ios android automation acceptance tests specs</tags>
+    <dependencies>
+      <dependency id="Appium.WebDriver" version="1.2.0.8" />
+      <dependency id="Humanizer" version="1.36.0" />
+      <dependency id="Newtonsoft.Json" version="6.0.8" />
+      <dependency id="Selenium.Support" version="2.45.0" />
+      <dependency id="Selenium.WebDriver" version="2.45.0" />
+    </dependencies>
+  </metadata>
+</package>
