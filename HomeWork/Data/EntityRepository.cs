@@ -4,14 +4,10 @@ using HomeWork.Data.Model;
 
 namespace HomeWork.Data.Data
 {
-    public delegate void ActionDelegate<TEntity>(TEntity entity) where TEntity:IEntity;
-
-    public delegate IEntity[] GetAllDelegate();
     public class EntityRepository<TEntity> : IRepository<TEntity> where TEntity : IEntity
     {
         private readonly List<TEntity> _storage = new List<TEntity>();
-       
-        
+          
         public void Add(TEntity contact)
         {
             _storage.Add(contact);
@@ -31,6 +27,5 @@ namespace HomeWork.Data.Data
         {
             return _storage.ToArray();
         }
-        //public GetAllDelegate<TEntity> tentitydelegate = GetAll;
     }
 }

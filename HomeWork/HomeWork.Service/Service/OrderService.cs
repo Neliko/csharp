@@ -7,12 +7,6 @@ using HomeWork.UI.ModelConverter;
 
 namespace HomeWork.UI.Service
 {
-  //  public delegate object GetEntityDelegate(IEntity entity);
-
-   // public delegate TModel GetModelDel<TModel, TEntity>(TEntity del) where TModel: IModel<TE>;
-
-    public delegate ContactModel ModelDelegate(Contact contact); 
-   
     internal class OrderService
     {
         private readonly IRepository<User> _userRepository;
@@ -29,36 +23,34 @@ namespace HomeWork.UI.Service
             _orderRepository.Add(new Order { Id = 1, UserId = 1, OrderNumber = 5, Price = 10, Quantity = 1 });
             _orderRepository.Add(new Order { Id = 2, UserId = 1, OrderNumber = 4, Price = 4, Quantity = 7 });
         }
-
+        //добавила обобщенный метод
         public TEntity[] GetAllEntities<TEntity, TRepository>(TRepository repository, long userId)
             where TRepository : IRepository<TEntity>
             where TEntity : IEntity, IEntityByUser
         {
             return repository.GetAll().Where(o => o.UserId == userId).ToArray();
         }
+
         public UserModel GetUser(long id)
         {
             var user = _userRepository.GetById(id);
 
-           // var contacts = _contactRepsoitory.GetAll().Where(o => o.UserId == id).ToArray();
-            var contacts = 
+            var contacts =
                 GetAllEntities<Contact, IRepository<Contact>>(_contactRepsoitory, id);
 
-            var orders = _orderRepository.GetAll().Where(o => o.UserId == id).ToArray();
-          
+            var orders = GetAllEntities<Order, IRepository<Order>>(_orderRepository, id);
           
             var result = new UserModel 
             {
                 Name = user.Name,
                 Contacts = GetModels(contacts, ContactConverter.ConvertEntityToModel),
-                Orders = GetOrders(orders)
+                Orders = GetModels(orders, OrderConverter.ConvertEntityToModel)
                  
             };
 
             return result;
         }
 
-    
         public TModel[] GetModels<TModel, TEntity>(TEntity[] entities, Func<TEntity, TModel> converter)
             where TEntity : IEntityOrderNumber
             where TModel : IModel<TEntity>
@@ -66,24 +58,15 @@ namespace HomeWork.UI.Service
             return entities.OrderBy(o => o.OrderNumber).Select(converter).ToArray();
         }
 
-        //public TModel[] GetModels<TModel, TEntity>(TEntity[] entities, Func<TEntity,TModel> tFunc) 
+        //убрали методы
+        //private ContactModel[] GetContacts(Contact[] contacts)
         //{
-        //    entities.Select(o => tFunc);
+        //    return contacts.OrderBy(o => o.OrderNumber).Select(o => new ContactModel { Value = o.Value }).ToArray();
         //}
 
-        //public TModel[] GetEntity<TModel, TEntity>(TEntity[] entities, Func<TModel> tFunc) where TModel: 
+        //private OrderModel[] GetOrders(Order[] orders)
         //{
-        //    return entities.OrderBy(o => o.OrderNumber).Select(o => tFunc).ToArray();
+        //    return orders.OrderBy(o => o.OrderNumber).Select(o => new OrderModel { Total = o.Quantity * o.Price }).ToArray();
         //}
-
-        private ContactModel[] GetContacts(Contact[] contacts)
-        {
-            return contacts.OrderBy(o => o.OrderNumber).Select(o => new ContactModel { Value = o.Value }).ToArray();
-        }
-
-        private OrderModel[] GetOrders(Order[] orders)
-        {
-            return orders.OrderBy(o => o.OrderNumber).Select(o => new OrderModel { Total = o.Quantity * o.Price }).ToArray();
-        }
     }
 }

@@ -7,8 +7,6 @@ namespace HomeWork.Data.Model
 {
    public interface IEntityByUser
     {
-        long UserId { get; set; }
-
-       
+        long UserId { get; set; }    
     }
 }

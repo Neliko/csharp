@@ -10,7 +10,6 @@ namespace HomeWork.UI
             var service = new OrderService();
 
             var user = service.GetUser(1);
-           
 
             Console.WriteLine(user.Contacts.Length);
             Console.WriteLine(user.Orders[0].Total);

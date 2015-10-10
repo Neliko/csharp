@@ -10,20 +10,14 @@ namespace HomeWork.Data
         static void Main(string[] args)
         {
     
-
             var user = new User { Id = 1, Name = "Name" };
 
             var phone = new Phone { Id = 1, PhoneCode = "123", Value = "123124" };
            
             var userRepository = GetRepository<User>();
-            //тут можем добавить пользователя
-            ActionDelegate<User> userDelegate = userRepository.Add;
-            userDelegate(user);
-    
-            //а тут удалить
-            userDelegate = userRepository.Remove;
-            userDelegate(user);
-           // userRepository.Add(user);
+
+            userRepository.Add(user);
+            userRepository.Remove(user);
 
             var contactRepository = GetRepository<Contact>();
             contactRepository.Add(phone);

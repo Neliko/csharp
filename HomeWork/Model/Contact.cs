@@ -10,7 +10,6 @@
         {
             return string.Format("Id={0}, Value={1}", Id, Value);
         }
-
         public long UserId { get; set; }
     }
 }
