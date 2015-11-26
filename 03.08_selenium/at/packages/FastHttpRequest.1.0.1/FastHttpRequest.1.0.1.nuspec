@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FastHttpRequest</id>
+    <version>1.0.1</version>
+    <title>Fast HttpRequest</title>
+    <authors>v.la@Live.cn</authors>
+    <owners>v.la@Live.cn</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>C# HttpRequest Helper</description>
+    <language>en-US</language>
+    <tags>Http HttpHelper HttpRequest</tags>
+  </metadata>
+</package>
