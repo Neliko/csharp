@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CountWord
 {
@@ -18,7 +13,7 @@ namespace CountWord
             var newStrListDistinct = newStrList.Distinct();
             int count = 0;
 
-            foreach (String word in newStrListDistinct)
+            foreach (var word in newStrListDistinct)
             {
                 count = 0;
                 foreach (string s in newStrList)
@@ -28,7 +23,7 @@ namespace CountWord
                 }
                 Console.WriteLine("Слово:{0} - {1}",word,count);       
             }  
-            return;
+            Console.ReadKey();
         }
     }
 }
