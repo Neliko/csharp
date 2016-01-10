@@ -1,27 +1,12 @@
-﻿using System;
-using HomeWork.Infrastructure;
-using HomeWork.Model;
+﻿using HomeWork.Model;
 
 namespace HomeWork.Validation
 {
-    internal class PhoneValidator : ContactValidator
+    internal class PhoneValidator : IValidator<Contact>
     {
-        public PhoneValidator(ILogger logger)
-            : base(logger)
+        public bool IsValid(Contact entity)
         {
-        }
-
-        public override bool IsValid(Contact entity)
-        {
-            try
-            {
-                return (((Phone) entity).PhoneCode != null && entity.Value != null);
-            }
-            catch (Exception e)
-            {
-                _logger.Log(e);
-                return false;
-            }
+            return (((Phone)entity).PhoneCode != null && entity.Value != null);
         }
     }
 }

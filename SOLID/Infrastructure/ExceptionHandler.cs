@@ -1,22 +1,33 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 
 namespace HomeWork.Infrastructure
 {
-    public class ExceptionHandler : IException
+    public class ExceptionHandler
     {
-        // открыт для модификации. Передавать _logger  конструкторе
-        readonly ILogger _logger = new FileLogger();
+        private IException _exceptionHandler = new ExceptionDefaultHandler(new FileLogger());
 
-        public ExceptionHandler(ILogger fileLogger)
-        {
-            _logger = _logger;
-        }
-
+        private static readonly IDictionary<string, object> ExcaptionHandlerDictionary =
+   new Dictionary<string, object>
+            {
+                {
+                    "ArgumentNullException", new ArgumentNullExceptionHandler(new ConsoleLogger())
+                },
+                {
+                    "InvalidOperationException", new InvalidOperationExceptionHandler()
+                }
+            };
+        
         public void Handle(Exception e)
         {
-                _logger.Log(e);
-        }
+            var exceptionType = e.GetType().Name;
 
+            if (ExcaptionHandlerDictionary.ContainsKey(exceptionType))
+            {
+                _exceptionHandler = (IException) ExcaptionHandlerDictionary[exceptionType];
+            }
+
+            _exceptionHandler.Handle(e);
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using HomeWork.Data;
 using HomeWork.Model;
-using HomeWork.Validation;
 
 namespace HomeWork
 {
@@ -9,21 +8,19 @@ namespace HomeWork
     {
         static void Main(string[] args)
         {
-            var user = new User { Id = 1, Name = "Name" };
+            var user = new User{ Id = 1, Name = "Name" };
 
-            var phone = new Phone { Id = 1, PhoneCode = "123", Value = "123124"};
+            var phone = new Phone{ Id = 1, PhoneCode = "123", Value = "123124" };
             var email = new Email { Id = 2, Value = "mail@2gis.ru" };
-
-            var userRepository = GetRepository<User, UserValidator>();
+            
+            var userRepository = GetRepository<User>();
             userRepository.Add(user);
 
-            var contactRepository = GetRepository<Contact, ContactValidator>();
+            var contactRepository = GetRepository<Contact>();
 
-          //  if (validator.IsValid(email))
-                contactRepository.Add(phone);
+            contactRepository.Add(email);
 
-         //   if (validator.IsValid(phone))
-                contactRepository.Add(email);
+            contactRepository.Add(phone);
 
             Console.WriteLine(contactRepository.GetById(1));
 
@@ -31,11 +28,10 @@ namespace HomeWork
 
             Console.ReadKey();
         }
-     private static IRepository<TEntity, TValidator> GetRepository<TEntity, TValidator>()
-            where TEntity : class, IEntity, new() where TValidator : IValidator<TEntity>, new()
-     {
-            return new EntityRepository<TEntity, TValidator>();
+        private static IRepository<TEntity> GetRepository<TEntity>()
+               where TEntity : class, IEntity, new()
+        {
+            return new EntityRepository<TEntity>();
         }
-
     }
 }

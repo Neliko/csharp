@@ -1,0 +1,10 @@
+C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid2\obj\Debug\HomeWork.csprojResolveAssemblyReference.cache
+C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid2\bin\Debug\HomeWork.exe
+C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid2\bin\Debug\HomeWork.pdb
+C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid2\obj\Debug\HomeWork.exe
+C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid2\obj\Debug\HomeWork.pdb
+C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid3\bin\Debug\HomeWork.exe
+C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid3\obj\Debug\HomeWork.exe
+C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid3\obj\Debug\HomeWork.pdb
+C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid3\bin\Debug\HomeWork.pdb
+C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid3\obj\Debug\HomeWork.csprojResolveAssemblyReference.cache

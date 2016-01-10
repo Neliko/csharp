@@ -3,27 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using HomeWork.Infrastructure;
 using HomeWork.Model;
-using HomeWork.Validation;
 
 namespace HomeWork.Data
 {
-    internal class EntityRepository<TEntity, TValidator> : IRepository<TEntity, TValidator>
+    internal class EntityRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IEntity, new()
-        where TValidator : IValidator<TEntity>, new()
     {
-        private readonly List<TEntity> _storage = new List<TEntity>();
-        private readonly IException _exceptionHandler = new ExceptionHandler(new FileLogger());
-        private readonly IValidator<TEntity> _validator = new TValidator();
+     
+        public readonly List<TEntity> _storage = new List<TEntity>();
+        ExceptionHandler exceptionHandler = new ExceptionHandler();
+
         public void Add(TEntity entity)
         {
             try
             {
-                if (_validator.IsValid(entity))
-                    _storage.Add(entity);
+                AddingValidator<TEntity>.ValidateAndAddEntity(_storage, entity);
             }
             catch (Exception e)
             {
-                _exceptionHandler.Handle(e);
+                exceptionHandler.Handle(e);
             }
         }
 
@@ -40,7 +38,7 @@ namespace HomeWork.Data
             }
             catch (Exception e)
             {
-                _exceptionHandler.Handle(e);
+                exceptionHandler.Handle(e);
             }
             return null;
         }

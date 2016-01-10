@@ -1,16 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace HomeWork.Infrastructure
 {
     class FileLogger : ILogger
     {
+        private readonly string _fileName;
+
+        public FileLogger(string fileName = "log.txt")
+        {
+            _fileName = fileName;
+        }
+
         public void Log(Exception e)
         {
-            File.AppendAllText("log.txt", e.Message);
+            File.AppendAllText( _fileName , e.Message);
         }
     }
 }

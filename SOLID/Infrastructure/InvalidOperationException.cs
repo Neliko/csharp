@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HomeWork.Infrastructure
 {
-    class InvalidOperationException : IException
+    class InvalidOperationExceptionHandler : IException
     {
-      public void Handle(Exception e)
+        public void Handle(Exception e)
         {
             throw new Exception("Custom exception", e);
         }

@@ -1,9 +1,8 @@
 ﻿using HomeWork.Model;
-using HomeWork.Validation;
 
 namespace HomeWork.Data
 {
-    internal interface IRepository<TEntity, TValidator> where TEntity : IEntity, new() where TValidator : IValidator<TEntity>
+    internal interface IRepository<TEntity> where TEntity : IEntity
     {
         void Add(TEntity contact);
 
