@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>MyConvert</id>
+    <version>1.0.1.6</version>
+    <title>MyConvert</title>
+    <authors>Eduardo Cecon Mendonça</authors>
+    <owners>Eduardo Cecon Mendonça</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Exemplo:
+MyConvert.ToMd5("Seu Nome");
+ou 
+MyCheck.CheckCnpj("00.000.000/0001-00")</description>
+    <summary>Converte, formata e valida diversos strings como CNPJ, CPF, MD5, BASE64 e muitos outros</summary>
+    <releaseNotes>Adicionado argumento CultureInfo no metodo ToMask.
+Adicionado Form Json</releaseNotes>
+    <copyright>Arcnet™ 2013</copyright>
+    <language>pt-BR</language>
+    <tags>CNPJ CPF MD5 BASE64 MASK</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0-Client" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Web.Extensions" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

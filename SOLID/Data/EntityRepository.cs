@@ -6,6 +6,7 @@ using HomeWork.Model;
 
 namespace HomeWork.Data
 {
+<<<<<<< HEAD
     internal class EntityRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IEntity, new()
     {
@@ -22,6 +23,21 @@ namespace HomeWork.Data
             catch (Exception e)
             {
                 exceptionHandler.Handle(e);
+=======
+    internal class EntityRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
+    {
+        private readonly List<TEntity> _storage = new List<TEntity>();
+        private readonly ExceptionHandler _exceptionHandler = new ExceptionHandler();
+        public void Add(TEntity contact)
+        {
+            try
+            {
+                _storage.Add(contact);
+            }
+            catch (Exception e)
+            {
+                _exceptionHandler.Handle(e);
+>>>>>>> master
             }
         }
 
@@ -38,7 +54,11 @@ namespace HomeWork.Data
             }
             catch (Exception e)
             {
+<<<<<<< HEAD
                 exceptionHandler.Handle(e);
+=======
+                _exceptionHandler.Handle(e);
+>>>>>>> master
             }
             return null;
         }
