@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Data\AddingValidator.cs" />
     <Compile Include="Data\EntityRepository.cs" />
     <Compile Include="Data\IRepository.cs" />
@@ -64,19 +63,6 @@
     <Compile Include="Validation\EmailValidator.cs" />
     <Compile Include="Validation\IValidator.cs" />
     <Compile Include="Validation\PhoneValidator.cs" />
-=======
-    <Compile Include="Data\EntityRepository.cs" />
-    <Compile Include="Data\IRepository.cs" />
-    <Compile Include="Infrastructure\ExceptionHandler.cs" />
-    <Compile Include="Model\Contact.cs" />
-    <Compile Include="Model\ContactType.cs" />
-    <Compile Include="Model\IEntity.cs" />
-    <Compile Include="Model\User.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validation\ContactValidator.cs" />
-    <Compile Include="Validation\IValidator.cs" />
->>>>>>> master
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
