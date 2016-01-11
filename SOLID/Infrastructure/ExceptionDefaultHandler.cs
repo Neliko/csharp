@@ -11,7 +11,7 @@ namespace HomeWork.Infrastructure
             _logger = logger;
         }
 
-        public virtual void Handle(Exception e)
+        public virtual void HandleException(Exception e)
         {
            _logger.Log(e);
         }

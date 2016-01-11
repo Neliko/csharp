@@ -9,7 +9,7 @@ namespace HomeWork.Infrastructure
         {
         }
 
-        public override void Handle(Exception e)
+        public override void HandleException(Exception e)
         {
             _logger.Log(e);
         }

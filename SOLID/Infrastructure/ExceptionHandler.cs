@@ -12,22 +12,27 @@ namespace HomeWork.Infrastructure
             {
                 {
                     "ArgumentNullException", new ArgumentNullExceptionHandler(new ConsoleLogger())
-                },
-                {
-                    "InvalidOperationException", new InvalidOperationExceptionHandler()
                 }
             };
-        
+
+        private static readonly IList<string> ExcaptionHandlerListWoHandler = new List<string>()  
+            {
+               "InvalidOperationException"
+            };
+
         public void Handle(Exception e)
         {
             var exceptionType = e.GetType().Name;
 
+            if (ExcaptionHandlerListWoHandler.Contains(exceptionType))
+                return;
+
             if (ExcaptionHandlerDictionary.ContainsKey(exceptionType))
             {
-                _exceptionHandler = (IException) ExcaptionHandlerDictionary[exceptionType];
+                _exceptionHandler = (IException)ExcaptionHandlerDictionary[exceptionType];
             }
 
-            _exceptionHandler.Handle(e);
+            _exceptionHandler.HandleException(e);
         }
     }
 }

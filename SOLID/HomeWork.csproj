@@ -52,7 +52,6 @@
     <Compile Include="Infrastructure\FileLogger.cs" />
     <Compile Include="Infrastructure\IException.cs" />
     <Compile Include="Infrastructure\ILogger.cs" />
-    <Compile Include="Infrastructure\InvalidOperationException.cs" />
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\Email.cs" />
     <Compile Include="Model\IEntity.cs" />

@@ -10,7 +10,7 @@ namespace HomeWork
         {
             var user = new User{ Id = 1, Name = "Name" };
 
-            var phone = new Phone{ Id = 1, PhoneCode = "123", Value = "123124" };
+            var phone = new Phone();//{ Id = 1, PhoneCode = "123", Value = "123124" };
             var email = new Email { Id = 2, Value = "mail@2gis.ru" };
             
             var userRepository = GetRepository<User>();

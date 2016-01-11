@@ -4,6 +4,6 @@ namespace HomeWork.Infrastructure
 {
     public interface IException
     {
-        void Handle(Exception e);
+        void HandleException(Exception e);
     }
 }
