@@ -42,15 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\AddingValidator.cs" />
+    <Compile Include="BL\AddingValidationService.cs" />
     <Compile Include="Data\EntityRepository.cs" />
     <Compile Include="Data\IRepository.cs" />
-    <Compile Include="Infrastructure\ArgumentNullException.cs" />
     <Compile Include="Infrastructure\ConsoleLogger.cs" />
-    <Compile Include="Infrastructure\ExceptionDefaultHandler.cs" />
     <Compile Include="Infrastructure\ExceptionHandler.cs" />
     <Compile Include="Infrastructure\FileLogger.cs" />
-    <Compile Include="Infrastructure\IException.cs" />
+    <Compile Include="Infrastructure\IExceptionHandler.cs" />
     <Compile Include="Infrastructure\ILogger.cs" />
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\Email.cs" />

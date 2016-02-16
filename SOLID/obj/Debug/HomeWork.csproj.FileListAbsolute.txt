@@ -8,3 +8,8 @@ C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid3\obj\Debug\HomeWork.exe
 C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid3\obj\Debug\HomeWork.pdb
 C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid3\bin\Debug\HomeWork.pdb
 C:\Users\neliko\Desktop\2gis\c#\genetic\HomeWork_solid3\obj\Debug\HomeWork.csprojResolveAssemblyReference.cache
+F:\git\csharp\SOLID\obj\Debug\HomeWork.exe
+F:\git\csharp\SOLID\obj\Debug\HomeWork.pdb
+F:\git\csharp\SOLID\bin\Debug\HomeWork.exe
+F:\git\csharp\SOLID\bin\Debug\HomeWork.pdb
+F:\git\csharp\SOLID\obj\Debug\HomeWork.csprojResolveAssemblyReference.cache

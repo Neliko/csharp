@@ -9,15 +9,19 @@ namespace HomeWork.Data
     internal class EntityRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IEntity, new()
     {
-     
         public readonly List<TEntity> _storage = new List<TEntity>();
-        ExceptionHandler exceptionHandler = new ExceptionHandler();
+        private readonly IExceptionHandler exceptionHandler;
+
+        public EntityRepository(IExceptionHandler exceptionHandler)
+        {
+            this.exceptionHandler = exceptionHandler;
+        }
 
         public void Add(TEntity entity)
         {
             try
             {
-                AddingValidator<TEntity>.ValidateAndAddEntity(_storage, entity);
+                _storage.Add(entity);
             }
             catch (Exception e)
             {

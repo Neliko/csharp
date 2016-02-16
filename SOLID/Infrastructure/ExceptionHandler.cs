@@ -1,38 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿     using System;
 
 namespace HomeWork.Infrastructure
 {
-    public class ExceptionHandler
+    public class ExceptionHandler : IExceptionHandler
     {
-        private IException _exceptionHandler = new ExceptionDefaultHandler(new FileLogger());
+        private ILogger logger;
 
-        private static readonly IDictionary<string, object> ExcaptionHandlerDictionary =
-   new Dictionary<string, object>
-            {
-                {
-                    "ArgumentNullException", new ArgumentNullExceptionHandler(new ConsoleLogger())
-                }
-            };
-
-        private static readonly IList<string> ExcaptionHandlerListWoHandler = new List<string>()  
-            {
-               "InvalidOperationException"
-            };
+        public ExceptionHandler(ILogger logger)
+        {
+            this.logger = logger;
+        }
 
         public void Handle(Exception e)
         {
-            var exceptionType = e.GetType().Name;
-
-            if (ExcaptionHandlerListWoHandler.Contains(exceptionType))
-                return;
-
-            if (ExcaptionHandlerDictionary.ContainsKey(exceptionType))
+            if (e is ArgumentNullException)
             {
-                _exceptionHandler = (IException)ExcaptionHandlerDictionary[exceptionType];
+                Console.WriteLine(e.Message);
             }
-
-            _exceptionHandler.HandleException(e);
+            else if (e is InvalidOperationException)
+            {
+                throw new Exception("Custom exception", e);
+            }
+            else
+            {
+                logger.Log(e);
+            }
         }
     }
 }
+

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Xml;
+using HomeWork.BL;
 using HomeWork.Data;
+using HomeWork.Infrastructure;
 using HomeWork.Model;
 
 namespace HomeWork
@@ -10,17 +13,21 @@ namespace HomeWork
         {
             var user = new User{ Id = 1, Name = "Name" };
 
-            var phone = new Phone();//{ Id = 1, PhoneCode = "123", Value = "123124" };
+            var phone = new Phone {Id = 1, PhoneCode = null, Value = "123124" };
             var email = new Email { Id = 2, Value = "mail@2gis.ru" };
-            
-            var userRepository = GetRepository<User>();
+
+            const string txtName = "logfile.txt";
+            var fileLogger = new FileLogger(txtName);
+            var exceptionHandler = new ExceptionHandler(fileLogger);
+
+            var userRepository = GetRepository<User>(exceptionHandler);
             userRepository.Add(user);
 
-            var contactRepository = GetRepository<Contact>();
+            var contactRepository = GetRepository<Contact>(exceptionHandler);
 
-            contactRepository.Add(email);
-
-            contactRepository.Add(phone);
+            var testService = new AddingValidationService<Contact>(fileLogger);
+            testService.ValidateAndAddEntity(contactRepository, email);
+            testService.ValidateAndAddEntity(contactRepository, phone);
 
             Console.WriteLine(contactRepository.GetById(1));
 
@@ -28,10 +35,10 @@ namespace HomeWork
 
             Console.ReadKey();
         }
-        private static IRepository<TEntity> GetRepository<TEntity>()
+        private static IRepository<TEntity> GetRepository<TEntity>(IExceptionHandler exceptionHandler)
                where TEntity : class, IEntity, new()
         {
-            return new EntityRepository<TEntity>();
+            return new EntityRepository<TEntity>(exceptionHandler);
         }
     }
 }
