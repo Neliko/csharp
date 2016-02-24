@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using HomeWork.Data;
-using HomeWork.Infrastructure;
+﻿using HomeWork.Data;
 using HomeWork.Model;
 using HomeWork.Validation;
 
@@ -9,15 +6,16 @@ namespace HomeWork.BL
 {
     class ValidationAndAddingService<TEntity> where TEntity : IEntity
     {
-        private IValidator<TEntity> validator;
+        private readonly IValidatorFactory _validatorFactory;
 
-        public ValidationAndAddingService(IValidator<TEntity> validator)
+        public ValidationAndAddingService(IValidatorFactory validatorFactory)
         {
-            this.validator = validator;
+            _validatorFactory = validatorFactory;
         }
 
         public void ValidateAndAddEntity(IRepository<TEntity> repository, TEntity entity)
         {
+            var validator = _validatorFactory.Create(entity);
             if (validator.IsValid(entity))
                 repository.Add(entity);
         }

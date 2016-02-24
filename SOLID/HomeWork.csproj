@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\AddingValidationService.cs" />
+    <Compile Include="BL\ValidationAndAddingService.cs" />
     <Compile Include="Data\EntityRepository.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Infrastructure\ConsoleLogger.cs" />
@@ -59,7 +59,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\EmailValidator.cs" />
     <Compile Include="Validation\IValidator.cs" />
+    <Compile Include="Validation\IValidatorFactory.cs" />
     <Compile Include="Validation\PhoneValidator.cs" />
+    <Compile Include="Validation\ValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
