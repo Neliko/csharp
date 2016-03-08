@@ -13,7 +13,7 @@ namespace HomeWork
         const string TxtName = "logfile.txt";
         private static readonly ILogger FileLogger = new FileLogger(TxtName);
 
-        static readonly Dictionary<Type, object> ValidatorGetterDictionary = new Dictionary<Type, object>
+        static readonly Dictionary<Type, object> Validators = new Dictionary<Type, object>
             {
                 {
                    typeof(Email),  new EmailValidator(FileLogger)
@@ -37,10 +37,11 @@ namespace HomeWork
 
             var contactRepository = GetRepository<Contact>(exceptionHandler);
 
-            var validatorFactory = new ValidatorFactory(ValidatorGetterDictionary);
-            validatorFactory.Create(email);
-            new ValidationAndAddingService<Contact>(validatorFactory).ValidateAndAddEntity(contactRepository, email);
-            new ValidationAndAddingService<Contact>(validatorFactory).ValidateAndAddEntity(contactRepository, phone);
+            var validatorFactory = new ValidatorFactory(Validators);
+            var addingService = new AddingService<Contact>(validatorFactory);
+
+            addingService.ValidateAndAddEntity(contactRepository, email);
+            addingService.ValidateAndAddEntity(contactRepository, phone);
 
             Console.WriteLine(contactRepository.GetById(1));
 

@@ -4,11 +4,11 @@ using HomeWork.Validation;
 
 namespace HomeWork.BL
 {
-    class ValidationAndAddingService<TEntity> where TEntity : IEntity
+    class AddingService<TEntity> where TEntity : IEntity
     {
         private readonly IValidatorFactory _validatorFactory;
 
-        public ValidationAndAddingService(IValidatorFactory validatorFactory)
+        public AddingService(IValidatorFactory validatorFactory)
         {
             _validatorFactory = validatorFactory;
         }

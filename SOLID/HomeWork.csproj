@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\ValidationAndAddingService.cs" />
+    <Compile Include="BL\AddingService.cs" />
     <Compile Include="Data\EntityRepository.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Infrastructure\ConsoleLogger.cs" />
