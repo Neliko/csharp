@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\AddingService.cs" />
+    <Compile Include="BL\IService.cs" />
     <Compile Include="Data\EntityRepository.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Infrastructure\ConsoleLogger.cs" />

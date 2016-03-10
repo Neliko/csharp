@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HomeWork.Model;
 
 namespace HomeWork.BL
 {
-    interface IService
+    interface IService<TEntity> where TEntity: IEntity
     {
     }
 }
