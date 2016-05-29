@@ -6,11 +6,16 @@ namespace HomeWork.Validation
 {
     class EmailValidator : IValidator<Contact>
     {
-        private ILogger logger;
+        private readonly ILogger _logger;
 
         public EmailValidator(ILogger logger)
         {
-            this.logger = logger;
+            if (logger == null)
+            {
+                throw new ArgumentNullException("logger");
+            }
+
+            _logger = logger;
         }
 
         public bool IsValid(Contact entity)
@@ -21,8 +26,9 @@ namespace HomeWork.Validation
             }
             catch (Exception e)
             { 
-               logger.Log(e);
+               _logger.Log(e);
             }
+
             return true;          
         }
     }

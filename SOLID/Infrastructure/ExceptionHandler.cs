@@ -4,11 +4,16 @@ namespace HomeWork.Infrastructure
 {
     public class ExceptionHandler : IExceptionHandler
     {
-        private ILogger logger;
+        private readonly ILogger _logger;
 
         public ExceptionHandler(ILogger logger)
         {
-            this.logger = logger;
+            if (logger == null)
+            {
+                throw new ArgumentNullException("logger");
+            }
+
+            _logger = logger;
         }
 
         public void Handle(Exception e)
@@ -23,7 +28,7 @@ namespace HomeWork.Infrastructure
             }
             else
             {
-                logger.Log(e);
+                _logger.Log(e);
             }
         }
     }

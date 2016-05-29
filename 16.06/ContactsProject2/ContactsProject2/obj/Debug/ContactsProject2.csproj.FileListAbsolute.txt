@@ -22,3 +22,6 @@ C:\Users\repIT\Source\Repos\16.06\ContactsProject2\ContactsProject2\bin\Debug\Co
 C:\Users\repIT\Source\Repos\16.06\ContactsProject2\ContactsProject2\bin\Debug\Data.dll
 C:\Users\repIT\Source\Repos\16.06\ContactsProject2\ContactsProject2\bin\Debug\Data.pdb
 C:\Users\repIT\Source\Repos\16.06\ContactsProject2\ContactsProject2\obj\Debug\ContactsProject2.csprojResolveAssemblyReference.cache
+F:\git\csharp\16.06\ContactsProject2\ContactsProject2\bin\Debug\ContactsProject2.exe.config
+F:\git\csharp\16.06\ContactsProject2\ContactsProject2\obj\Debug\ContactsProject2.exe
+F:\git\csharp\16.06\ContactsProject2\ContactsProject2\obj\Debug\ContactsProject2.pdb

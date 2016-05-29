@@ -13,3 +13,13 @@ F:\git\csharp\SOLID\obj\Debug\HomeWork.pdb
 F:\git\csharp\SOLID\bin\Debug\HomeWork.exe
 F:\git\csharp\SOLID\bin\Debug\HomeWork.pdb
 F:\git\csharp\SOLID\obj\Debug\HomeWork.csprojResolveAssemblyReference.cache
+F:\git\csharp\SOLID\bin\Debug\HomeWork.exe.config
+F:\git\csharp\SOLID\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+F:\git\csharp\SOLID\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+F:\git\csharp\SOLID\bin\Debug\Microsoft.Practices.Unity.dll
+F:\git\csharp\SOLID\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.dll
+F:\git\csharp\SOLID\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+F:\git\csharp\SOLID\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+F:\git\csharp\SOLID\bin\Debug\Microsoft.Practices.Unity.xml
+F:\git\csharp\SOLID\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+F:\git\csharp\SOLID\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
