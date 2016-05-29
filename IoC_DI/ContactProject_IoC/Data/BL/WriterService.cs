@@ -4,7 +4,7 @@ using Data.Infrostructure;
 
 namespace Data.BL
 {
-    public class WriterService
+    public class WriterService : IWriterService
     {
         private readonly IWriter _writer;
         public WriterService(IWriter writer)

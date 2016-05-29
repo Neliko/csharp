@@ -2,7 +2,7 @@
 
 namespace Data.Infrostructure
 {
-    class FileWriter: IWriter
+    public class FileWriter: IWriter
     {
         private readonly string _fileName;
 
