@@ -2,7 +2,7 @@
 
 namespace HomeWork.Data
 {
-    internal interface IRepository<TEntity> where TEntity : IEntity
+    public interface IRepository<TEntity> where TEntity : IEntity
     {
         void Add(TEntity contact);
 

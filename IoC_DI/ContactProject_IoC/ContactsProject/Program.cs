@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Data;
 using Data.BL;
 using Data.Data;
@@ -10,59 +11,51 @@ namespace ContactsProject
 {
     internal class Program
     {
-        private static void PrepareRegistration(IUnityContainer unityContainer)
-        {
-            // регистрация типов
-            unityContainer.RegisterType<ILogger, ConsoleLogger>("consoleLogger");
-            unityContainer.RegisterType<ILogger, FileLogger>("fileLoger");
-            unityContainer.RegisterType<IWriter, ConsoleWriter>("consoleWriter");
-            unityContainer.RegisterType<IWriter, FileWriter>("fileWriter");   
-        }
+       private static readonly UnityContainer unityContainer = new UnityContainer();
 
-        private static IWriterService GetWriterServiceByWriterName(IUnityContainer unityContainer, string writerName)
-        {
-            unityContainer.RegisterType<IWriterService, WriterService>( new InjectionConstructor(unityContainer.Resolve<IWriter>(writerName)));
+       private static IWriterService GetWriterServiceByWriterType<TWriterService, TWriter>(IUnityContainer unityContainer)
+           where TWriter : IWriter, new()
+           where TWriterService : IWriterService
+       {
+           var writerService = unityContainer.Resolve<TWriterService>(new DependencyOverride<TWriter>(new TWriter()));
 
-            var writerService = unityContainer.Resolve<IWriterService>();
+           return writerService;
+       }
 
-            return writerService;
-        }
-
-        private static IExceptionHandler GetExceptionHandlerByLoggerName(IUnityContainer unityContainer, string loggerName)
-        {
-            unityContainer.RegisterType<IExceptionHandler, ExceptionHandler>(new InjectionConstructor(unityContainer.Resolve<ILogger>(loggerName)));
-
-            var exceptionHanler = unityContainer.Resolve<IExceptionHandler>();
-
-            return exceptionHanler;
-        }
         private static void Main()
         {
-            var unityContainer = new UnityContainer();
+            Registration.PrepareRegistration(unityContainer);
 
-            PrepareRegistration(unityContainer);
-            unityContainer.RegisterType<WriterService>("consoleWriterSrevice", new InjectionConstructor(unityContainer.Resolve<ConsoleWriter>("consoleLogger")));
-
-            var writer = unityContainer.Resolve<IWriter>("consoleWriter");
-            var eh = GetExceptionHandlerByLoggerName(unityContainer, "consoleLogger");
-
-            // Получение репозитория
-            unityContainer.RegisterType<IRepository<Contact>, Repository<Contact>>("contactRepository", new InjectionConstructor(eh, writer));
-            var contactRepository = unityContainer.Resolve<IRepository<Contact>>("contactRepository");
+            // Получение репозиториев контактов
+            var contactRepository = Resolve<Contact>();
+            var userRepository = Resolve<User>();
 
             // добавление контактов различных типов в карточку
-            var firstContact = new Email {Id = 1, Value = "n3@rambler.ru", Alias = "Neliko"};
-            var secondContact = new Phone {Id = 2, Value = "12345", TelephoneZone = "07"};
+            var emailContact = new Email {Id = 1, Value = "n3@rambler.ru", Alias = "Neliko"};
+            var phoneContact = new Phone {Id = 2, Value = "12345", TelephoneZone = "07"};
 
-            contactRepository.Add(firstContact);
-            contactRepository.Add(secondContact);
+            contactRepository.Add(emailContact);
+            contactRepository.Add(phoneContact);
 
-            var writerService = GetWriterServiceByWriterName(unityContainer, "consoleWriter");
+            var contacts = contactRepository.GetAll();
+            var user = new User {Contacts = (ICollection<Contact>) contacts, Id = 1, Name = "Test"};
+
+            userRepository.Add(user);
+
+            var writerService = GetWriterServiceByWriterType<WriterService, ConsoleWriter>(unityContainer);
 
             // Вывод на консоль
+            Console.WriteLine("Вывод данных на консоль через сервис");
+            writerService.WriteAll(userRepository.GetAll());
+            Console.WriteLine();
             writerService.WriteAll(contactRepository.GetAll());
 
             Console.ReadKey();
+        }
+
+        private static EntityRepository<TEntity> Resolve<TEntity>() where TEntity : class, IEntity
+        {
+            return unityContainer.Resolve<EntityRepository<TEntity>>();
         }
     }
 }

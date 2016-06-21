@@ -4,7 +4,7 @@ using HomeWork.Validation;
 
 namespace HomeWork.BL
 {
-    class AddingService<TEntity> : IService<TEntity> where TEntity : IEntity
+   public class AddingService<TEntity> : IService<TEntity> where TEntity : IEntity
     {
         private readonly IValidatorFactory _validatorFactory;
 
@@ -13,7 +13,7 @@ namespace HomeWork.BL
             _validatorFactory = validatorFactory;
         }
 
-        public void ValidateAndAddEntity(IRepository<TEntity> repository, TEntity entity)
+       public void ValidateAndAddEntity(IRepository<TEntity> repository, TEntity entity)
         {
             var validator = _validatorFactory.Create(entity);
             if (validator.IsValid(entity))

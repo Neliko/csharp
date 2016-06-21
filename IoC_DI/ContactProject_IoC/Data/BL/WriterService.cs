@@ -13,13 +13,14 @@ namespace Data.BL
             {
                 throw new Exception("Необходимо указать writer");
             }
-            this._writer = writer;
+            _writer = writer;
         }
 
         public void WriteAll(IReadOnlyCollection<IEntity> entities )
         {
             foreach (var entity in entities)
             {
+                _writer.Write(entity.GetType().Name);
                 _writer.Write(entity.ToString());
             }
         }

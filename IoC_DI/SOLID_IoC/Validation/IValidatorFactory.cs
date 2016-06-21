@@ -2,7 +2,7 @@
 
 namespace HomeWork.Validation
 {
-    interface IValidatorFactory
+    public interface IValidatorFactory
     {
         IValidator<TEntity> Create<TEntity>(TEntity entity) where TEntity : IEntity;
     }
