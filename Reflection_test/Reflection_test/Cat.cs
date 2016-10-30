@@ -7,7 +7,6 @@ namespace Reflection_test
     {
         private int _tailLength;
 
-		// todo: сделать, чтобы кот гавкал :)
 	    private static string _sound = "Myyaaauuuu";
 
 		[DefaultValue("black")]
@@ -28,7 +27,6 @@ namespace Reflection_test
             _tailLength = 5;
         }
 
-		// todo: написать тест на приватный метод
         private bool LikeToEat(IFood someFood)
         {
 			// Котики любят рыбку :)
