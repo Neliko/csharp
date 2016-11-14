@@ -13,76 +13,91 @@ namespace Reflection_test
             var grelka = (Cat) Activator.CreateInstance(typeof (Cat));
             var zarapka = (Cat) Activator.CreateInstance(typeof (Cat), new object[] {10});
 
-            var murzik = new Cat();
             var catType = typeof (Cat);
 
+            Console.WriteLine("Атрибуты класса Cat:");
             foreach (var attribute in catType.GetCustomAttributes())
             {
                 Console.WriteLine(attribute.ToString());
             }
 
             // Выводим все методы класса Cat
-            var methodInfo =
-                catType.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance |
-                                      BindingFlags.DeclaredOnly);
-
-            Console.WriteLine("Все методы класса Cat:");
-            DisplayInfo(methodInfo.Select(x=>x.ToString()).ToList());
-
-            Console.WriteLine("Количество методов: {0} \n", methodInfo.Count());
+            ShowAllMethodByClassType(catType);
 
             // Заставляем Грелку гавкать
-            var piInstance =
-                catType.GetField("_sound", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Static);
+            var voice = ChangeSoundOfTheCat(grelka, catType);
+            Console.WriteLine($"Грелка говорит: {voice} \n");
 
-            // ReSharper disable once PossibleNullReferenceException
-            piInstance.SetValue(grelka, "Gaaaaav");
+            var baseType = typeof(IAnimal);
+            List<PropertyInfo> animalTypeDefaultProperties;
 
-            var voice = catType.InvokeMember("Voice",
-                BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.InvokeMethod, null,
-                grelka, null);
+            // Устанавливаем значение по умолчанию для каждого своства, которое содержит DefaultValue и возвращаем список объектов типа IAnimal
+            var animals = SetDefaulValueForAllPropertiesByTypeAndReturnInstanceList(baseType, out animalTypeDefaultProperties);
 
-            Console.WriteLine("Гралка говорит: {0} \n", voice);
+            Console.WriteLine("Свойства с установленными значениями по умолчанию:");
 
-            // Создаем экземпляры каждого класса IAnimal
-            var baseType = typeof (IAnimal);
-            var animalTypes =
-                Assembly.GetAssembly(baseType)
-                    .GetTypes()
-                    .Where(x => baseType.IsAssignableFrom(x) && x != baseType).ToList();
-
-            var animalCollection = animalTypes.Select(Activator.CreateInstance).ToArray();
-
-            //Получаем все свойства со значениями по умолчанию        
-            IList<PropertyInfo> animalTypeDefaultProperties = animalTypes.SelectMany(type => (type.GetProperties().Where(x => x.CustomAttributes.Any()).ToArray())).ToList();
-           
-            // Устанавливаем значение для каждого найденного свойства
-            foreach (var property in animalTypeDefaultProperties)
+            foreach (var attribute in animalTypeDefaultProperties)
             {
-                var declaringPropertyType = property.DeclaringType;
-                var animalType = animalTypes.FirstOrDefault(type => type == declaringPropertyType);
-                if (animalType == null)
-                {
-                    throw new ArgumentNullException("Не удалось найти тип " + declaringPropertyType);
-                }
-                var animalInstance = animalCollection.FirstOrDefault(x => x.GetType() == declaringPropertyType);
-
-                animalType.GetProperty(property.Name).SetValue(animalInstance, property.GetCustomAttribute<DefaultValueAttribute>().Value.ToString());
+                Console.WriteLine($"Свойство:{attribute.Name}");
             }
 
-            Console.WriteLine("Своства с установленными значениями по умолчанию:");
-            DisplayInfo(animalTypeDefaultProperties.Select(x=>x.Name).ToList());
             Console.ReadKey();
         }
 
-        public static void DisplayInfo(IList<string> info)
+        private static void ShowAllMethodByClassType(IReflect classtype)
         {
-            foreach (var attribute in info)
+            var methodInfos = classtype.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+
+            Console.WriteLine("Все методы класса Cat:");
+            foreach (var methodInfo in methodInfos)
             {
-                Console.WriteLine(attribute);
+              Console.WriteLine(methodInfo.ToString());
             }
 
             Console.WriteLine();
+            Console.WriteLine($"Количество методов: {methodInfos.Length} \n");
+        }
+
+        private static object ChangeSoundOfTheCat(Cat cat, Type type)
+        {
+            var soundProperty =
+               type.GetField("_sound", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Static);
+
+            // ReSharper disable once PossibleNullReferenceException
+            soundProperty.SetValue(cat, "Gaaaaav");
+
+            return type.InvokeMember("Voice",
+                BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.InvokeMethod, null,
+                cat, null);
+        }
+
+        private static IList<IAnimal> SetDefaulValueForAllPropertiesByTypeAndReturnInstanceList(Type baseType, out List<PropertyInfo> propertyList)
+        {
+            // Создаем экземпляры каждого класса IAnimal
+            var animalTypes =
+                Assembly.GetAssembly(baseType)
+                    .GetTypes()
+                    .Where(x => baseType.IsAssignableFrom(x) && x != baseType && !x.IsAbstract).ToList();
+
+            var animalCollection = new List<IAnimal>();
+            propertyList = new List<PropertyInfo>();
+
+            foreach (var animalType in animalTypes)
+            {
+               var animal = (IAnimal)Activator.CreateInstance(animalType);
+                var properties = animalType.GetProperties().Where(x => x.PropertyType == typeof(DefaultValueAttribute)).ToList();// x.GetCustomAttribute<DefaultValueAttribute>() != null).ToList();
+
+                foreach (var property in properties)
+                {
+                    animalType.GetProperty(property.Name).SetValue(animal, property.GetCustomAttribute<DefaultValueAttribute>().Value.ToString());
+
+                }
+
+                animalCollection.Add(animal);
+                propertyList.AddRange(properties);
+            }
+
+            return animalCollection;
         }
     }
 }

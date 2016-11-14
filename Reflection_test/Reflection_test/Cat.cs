@@ -12,7 +12,7 @@ namespace Reflection_test
 		[DefaultValue("black")]
         public string FurColor { get; set; }
 
-	    public bool IsPedegreeed { get; set; }
+        public bool IsPedegreeed { get; set; }
 
 	    [DefaultValue("green")]
 	    public string EyeColor { get; set; }
